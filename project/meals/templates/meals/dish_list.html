@@ -1,0 +1,40 @@
+<html>
+
+<a href="{% url meals.views.adiciona_ou_atualiza "dish" %}">Adicionar prato</a>
+
+<br>
+<br>
+<br>
+
+
+{% if object_list %}
+<table>
+ <thead>
+   <tr>
+     <th>Id</th>
+     <th>Name</th>
+   </tr>
+ </thead>
+ <tbody>
+   {% for object in object_list %}
+   <tr>
+     <td>{{ object.id }}</td>
+     <td>{{ object.name }}</td>
+     <td>
+       <a href="{% url meals.views.remove "dish" object.id %}">
+            Excluir
+          </a>
+     </td>
+     <td>
+       <a href="{% url meals.views.adiciona_ou_atualiza "dish" object.id %}">
+            Alterar
+          </a>
+     </td>
+   </tr>
+   {% endfor %}
+ </tbody>
+</table>
+{% else %}
+<p>Sem registros para listar</p>
+{% endif %}
+</html>
